@@ -76,7 +76,7 @@ apt-get -y install wget || {
   exit 1
 }
 
-IP=wget -q -O - http://checkip.amazonaws.com
+IP=wget -q -O - http://api.ipify.org
 
 if [ "x$IP" = "x" ]
 then
