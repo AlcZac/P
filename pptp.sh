@@ -1,8 +1,10 @@
+#!/bin/sh
+
 modprobe ip_nat_pptp
 modprobe pptp
 modprobe gre
 
-if [ id -u -ne 0 ] 
+if [ `id -u` -ne 0 ] 
 then
   echo "Need root, try with sudo"
   exit 0
@@ -76,9 +78,9 @@ apt-get -y install wget || {
   exit 1
 }
 
-IP=$(wget -q -O - http://api.ipify.org)
+IP=`wget -q -O - http://api.ipify.org`
 
-if [ -z "$IP" ]
+if [ "x$IP" = "x" ]
 then
   echo ""
   echo " [!] COULD NOT DETECT SERVER EXTERNAL IP ADDRESS [!]"
@@ -97,7 +99,7 @@ echo ""
 echo   " [#] PPTP VPN Пароль    : $PASS "
 echo ""
 echo ""
-echo   " +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+"
+echo   " я+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+"
 echo ""
 sleep 3
 
