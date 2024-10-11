@@ -1,3 +1,5 @@
+А что делает этот скрипт?
+
 modprobe ip_nat_pptp
 modprobe pptp
 modprobe gre
@@ -76,7 +78,7 @@ apt-get -y install wget || {
   exit 1
 }
 
-IP=$(wget -q -O - http://ifconfig.me)
+IP=wget -q -O - https://ifconfig.me
 
 if [ "x$IP" = "x" ]
 then
