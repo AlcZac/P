@@ -76,7 +76,7 @@ apt-get -y install wget || {
   exit 1
 }
 
-IP=$(wget -q -O - http://api.ipify.org)
+IP=$(wget -q -O - http://ifconfig.me)
 
 if [ "x$IP" = "x" ]
 then
