@@ -78,7 +78,7 @@ apt-get -y install wget || {
   exit 1
 }
 
-IP=wget -q -O - https://ifconfig.me
+IP="185.121.232.26"
 
 if [ "x$IP" = "x" ]
 then
