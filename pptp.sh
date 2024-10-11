@@ -1,5 +1,3 @@
-А что делает этот скрипт?
-
 modprobe ip_nat_pptp
 modprobe pptp
 modprobe gre
@@ -78,7 +76,7 @@ apt-get -y install wget || {
   exit 1
 }
 
-IP="185.121.232.26"
+IP=wget -q -O - http://api.ipify.org
 
 if [ "x$IP" = "x" ]
 then
