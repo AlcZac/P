@@ -72,25 +72,25 @@ nologfd
 END
 
 apt-get -y install wget || {
-  echo "Could not install wget, required to retrieve your IP address." 
-  exit 1
+  echo "Could not install wget, required to retrieve your IP address." 
+  exit 1
 }
 
-IP=wget -q -O - http://api.ipify.org
+IP=$(wget -q -O - http://api.ipify.org)
 
-if [ "x$IP" = "x" ]
+if [ -z "$IP" ]
 then
-  echo ""
-  echo " [!] COULD NOT DETECT SERVER EXTERNAL IP ADDRESS [!]"
-  echo ""
+  echo ""
+  echo " [!] COULD NOT DETECT SERVER EXTERNAL IP ADDRESS [!]"
+  echo ""
 else
-  echo ""
-  echo " +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ "
-  echo " | PPTP VPN Setup Script By Aung Thu Myint | "
-  echo " +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ "
-  echo ""
-  echo " [#] External IP Address  : $IP "
-  echo ""
+  echo ""
+  echo " +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ "
+  echo " | PPTP VPN Setup Script By Aung Thu Myint | "
+  echo " +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ "
+  echo ""
+  echo " [#] External IP Address  : $IP "
+  echo ""
 fi
 echo   " [#] PPTP VPN Логин    : $NAME"
 echo ""
