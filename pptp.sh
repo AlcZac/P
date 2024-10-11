@@ -4,8 +4,8 @@ modprobe gre
 
 if [ id -u -ne 0 ] 
 then
-  echo "Need root, try with sudo"
-  exit 0
+  echo "Need root, try with sudo"
+  exit 0
 fi
 
 network_interface=$(ip -o -4 route show to default | awk '{print $5}')
@@ -13,8 +13,8 @@ network_interface=$(ip -o -4 route show to default | awk '{print $5}')
 apt-get update
 
 apt-get -y install pptpd || {
-  echo "Could not install pptpd" 
-  exit 1
+  echo "Could not install pptpd" 
+  exit 1
 }
 
 #ubuntu has exit 0 at the end of the file.
@@ -24,7 +24,7 @@ cat >> /etc/rc.local << END
 echo 1 > /proc/sys/net/ipv4/ip_forward
 iptables -I INPUT -p tcp --dport 22 -j ACCEPT
 iptables -I INPUT -p tcp --dport 1723 -j ACCEPT
-iptables -I INPUT  --protocol 47 -j ACCEPT
+iptables -I INPUT  --protocol 47 -j ACCEPT
 iptables -t nat -A POSTROUTING -s 192.168.2.0/24 -d 0.0.0.0/0 -o $network_interface -j MASQUERADE
 iptables -I FORWARD -s 192.168.2.0/24 -p tcp -m tcp --tcp-flags FIN,SYN,RST,ACK SYN -j TCPMSS --set-mss 1356
 END
@@ -76,9 +76,9 @@ apt-get -y install wget || {
   exit 1
 }
 
-IP=$(wget -q -O - http://api.ipify.org)
+IP=wget -q -O - http://api.ipify.org
 
-if [ -z "$IP" ]
+if [ "x$IP" = "x" ]
 then
   echo ""
   echo " [!] COULD NOT DETECT SERVER EXTERNAL IP ADDRESS [!]"
@@ -92,12 +92,12 @@ else
   echo " [#] External IP Address  : $IP "
   echo ""
 fi
-echo   " [#] PPTP VPN Логин    : $NAME"
+echo   " [#] PPTP VPN Логин    : $NAME"
 echo ""
-echo   " [#] PPTP VPN Пароль    : $PASS "
+echo   " [#] PPTP VPN Пароль    : $PASS "
 echo ""
 echo ""
-echo   " +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+"
+echo   " +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+"
 echo ""
 sleep 3
 
