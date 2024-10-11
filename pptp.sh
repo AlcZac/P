@@ -76,9 +76,9 @@ apt-get -y install wget || {
   exit 1
 }
 
-IP=wget -q -O - http://api.ipify.org
+IP=$(wget -q -O - http://api.ipify.org)
 
-if [ "x$IP" = "x" ]
+if [ -z "$IP" ]
 then
   echo ""
   echo " [!] COULD NOT DETECT SERVER EXTERNAL IP ADDRESS [!]"
